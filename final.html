@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GM Rewards POC</title>
+    <style>:root{color-scheme:light;--background:#f6f1e8;--surface:rgba(255,255,255,0.78);--text:#333;--muted:#52606d;--accent:#b45309;--accent-strong:#8b4513;--border:rgba(31,41,51,0.12);--shadow:0 24px 60px rgba(31,41,51,0.12);--card-content-y-anim-amount:12px;--card-content-fade-out-opacity-anim-duration:200ms;--card-content-fade-out-opacity-anim-delay:0ms;--card-content-fade-out-y-anim-duration:200ms;--card-content-fade-out-y-anim-delay:0ms;--card-content-fade-in-opacity-anim-duration:300ms;--card-content-fade-in-opacity-anim-delay:0ms;--card-content-fade-in-y-anim-duration:300ms;--card-content-fade-in-y-anim-delay:100ms}*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--text);background:radial-gradient(circle at top left,rgba(180,83,9,0.16),transparent 32%),linear-gradient(160deg,#f8f3ea 0%,#efe5d4 100%)}a{color:inherit;text-decoration:none}.site-header{position:sticky;top:0;z-index:20;padding:20px 24px 0}.site-header__inner{width:min(1100px,100%);margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);box-shadow:0 12px 32px rgba(31,41,51,0.08)}.site-logo{font-size:1.1rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.site-nav{display:flex;align-items:center;gap:18px;color:var(--muted)}.site-nav a{position:relative;padding-bottom:4px}.site-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 180ms ease}.site-nav a:hover::after,.site-nav a:focus-visible::after{transform:scaleX(1)}.page{min-height:100vh;display:grid;place-items:center;padding:24px}.iframe-panel{width:100%}.iframe-panel__frame{display:block;width:100%;min-height:80vh;border:0;border-radius:18px;background:#fff}.iframe-body{background-color:transparent}.hero{width:min(1100px,100%);padding:40px;border:1px solid var(--border);border-radius:28px;background:var(--surface);backdrop-filter:blur(10px);box-shadow:var(--shadow)}@media screen and (max-width:640px){.site-header{padding:16px 16px 0}.site-header__inner{padding:16px 18px;border-radius:24px;flex-direction:column;align-items:flex-start}.site-nav{flex-wrap:wrap;gap:14px}.hero{width:90%}.iframe-panel{width:100%;padding:12px;border-radius:20px}.iframe-panel__frame{min-height:70vh;border-radius:14px}}.eyebrow{margin:0 0 12px;font-size:.85rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent-strong)}h1{margin:0;font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95}.subtitle{margin:20px 0 28px;max-width:42ch;font-size:1.1rem;line-height:1.6;color:var(--muted)}button{appearance:none;border:0;border-radius:999px;padding:14px 22px;font:inherit;font-size:1rem;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-strong));cursor:pointer;transition:transform 160ms ease}button:hover{transform:translateY(-1px)}button:focus-visible{outline:3px solid rgba(180,83,9,0.35);outline-offset:4px}.status-message{margin:18px 0 0;color:var(--muted)}@media (max-width:640px){.hero{padding:28px;border-radius:20px}.subtitle{font-size:1rem}}.scroll-showcase-section{--showcase-count:4;min-height:calc(100vh + max(0, var(--showcase-count) - 1) * 65vh);margin-top:48px}.scroll-showcase-stage{position:sticky;top:24px;min-height:calc(100vh - 48px);display:grid;align-items:center}.scroll-showcase-frame{position:relative;overflow:hidden;min-height:70vh;border-radius:28px;background:#120d08;box-shadow:var(--shadow)}.scroll-showcase-media{position:relative;min-height:70vh}.scroll-showcase-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:translate3d(48px,0,0) scale(1.04);transition:transform 500ms ease,opacity 500ms ease}.scroll-showcase-image:nth-child(odd){transform:translate3d(-48px,0,0) scale(1.04)}.scroll-showcase-image.is-active{opacity:1;transform:translate3d(0,0,0) scale(1)}.scroll-showcase-overlay{position:absolute;left:24px;right:24px;bottom:24px;display:grid;gap:12px;justify-items:start}.scroll-showcase-copy{max-width:32ch;padding:18px 20px;border-radius:22px;background:rgba(250,250,250,0.72);color:var(--text);transition:background-color 260ms ease,transform 260ms ease}.scroll-showcase-copy-title{appearance:none;border:0;padding:0;background:transparent;color:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:1rem;font-weight:600;text-align:left}.scroll-showcase-copy-title::before{content:"+";display:inline-grid;place-items:center;width:24px;height:24px;border:1.5px solid currentColor;border-radius:999px;opacity:1;transform:scale(1) rotate(0deg);transition:opacity 220ms ease,transform 220ms ease}.scroll-showcase-copy.is-active .scroll-showcase-copy-title::before{content:" "}.scroll-showcase-copy-title:focus-visible{outline:2px solid rgba(255,255,255,0.75);outline-offset:4px}.scroll-showcase-copy-description{margin:10px 0 0;line-height:1.5;max-height:0;opacity:0;overflow:hidden;transform:translateY(-8px);transition:max-height 300ms ease,opacity 220ms ease,transform 220ms ease}.scroll-showcase-copy.is-active{background:rgba(250,250,250,0.82);transform:translateY(0)}.scroll-showcase-copy.is-active .scroll-showcase-copy-description{max-height:120px;opacity:1;transform:translateY(0)}.video-scrub-section{min-height:240vh;margin-top:48px}.video-scrub-stage{position:sticky;top:24px;min-height:calc(100vh - 48px);display:grid;align-items:center}.video-scrub-frame{position:relative;overflow:hidden;min-height:70vh;border-radius:28px;background:#120d08;box-shadow:var(--shadow)}.video-scrub-media{display:block;width:100%;height:70vh;object-fit:cover}.video-scrub-copy{position:absolute;left:24px;bottom:24px;max-width:34ch;padding:20px 22px;border-radius:20px;background:rgba(18,13,8,0.72);color:#fff}.video-scrub-copy .eyebrow,.video-scrub-copy h2,.video-scrub-copy p{color:inherit}.video-scrub-copy h2{margin:0 0 10px;font-size:clamp(2rem,4vw,3rem)}.video-scrub-copy p:last-child{margin:0}@media (max-width:640px){.video-scrub-frame{min-height:60vh}.video-scrub-media{height:60vh}.video-scrub-copy{left:16px;right:16px;bottom:16px;max-width:none}.scroll-showcase-frame,.scroll-showcase-media{min-height:60vh}.scroll-showcase-overlay{left:16px;right:16px;bottom:16px}.scroll-showcase-copy{max-width:none}}html{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar{display:none}</style>
+  </head>
+  <body class="iframe-body">
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Prototype</p>
+        <h1>GM Rewards POC</h1>
+        <img src="https://placehold.co/600x400/000/fff?text=Masthead" style="width:100%" alt="MastheadPlaceholder" />
+        <p class="subtitle">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus consequatur, nostrum cum eligendi blanditiis assumenda laborum tempora error atque. 
+        </p>
+        <button id="cta-button" type="button">Test Interaction</button>
+        <p id="status-message" class="status-message" aria-live="polite">
+          Ready.
+        </p>
+        <section class="scroll-showcase-section">
+          <div class="scroll-showcase-stage">
+            <div class="scroll-showcase-frame">
+              <div class="scroll-showcase-media">
+                <img class="scroll-showcase-image is-active" src="https://picsum.photos/200/300?random=0" alt="Scroll showcase image 1" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=1" alt="Scroll showcase image 2" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=2" alt="Scroll showcase image 3" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=3" alt="Scroll showcase image 4" />
+              </div>
+              <div class="scroll-showcase-overlay">
+                <article class="scroll-showcase-copy is-active" data-scroll-copy-index="0">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="0" aria-pressed="true">Slide One</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="false">Earn points through purchases, service visits, and ongoing member activity.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="1">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="1" aria-pressed="false">Slide Two</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Track tier progress with clear milestones and visible reward unlocks.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="2">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="2" aria-pressed="false">Slide Three</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Redeem points across service, accessories, and future GM experiences.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="3">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="3" aria-pressed="false">Slide Four</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Connect local dealer offers to the rewards journey for more relevant promotions.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="video-scrub-section">
+          <div class="video-scrub-stage">
+            <div class="video-scrub-frame">
+              <video
+                class="video-scrub-media"
+                data-scroll-scrub-video
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              </video>
+              <div class="video-scrub-copy">
+                <p class="eyebrow">Video Moment</p>
+                <h2>Scroll To Drive The Story</h2>
+                <p>
+                  As this section enters view, the video advances with your scroll and reverses when you move back up the page.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <img src="https://placehold.co/1020x800/ddd/000?text=Other+Content" style="border-radius:28px" alt="Other Content Placeholder" />
+
+      </section>
+    </main>
+    <script>const ctaButton=document.getElementById("cta-button"),statusMessage=document.getElementById("status-message");function setupScrollShowcase(){const e=document.querySelector(".scroll-showcase-section"),t=document.querySelector(".scroll-showcase-stage");if(!e||!t)return;const o=Array.from(e.querySelectorAll(".scroll-showcase-image")),r=Array.from(e.querySelectorAll("[data-scroll-copy-index]")),n=Array.from(e.querySelectorAll("[data-scroll-trigger-index]")),s=Math.min(o.length,r.length);if(!s)return;e.style.setProperty("--showcase-count",String(s));let a=0,i=0,c=0;const l=e=>{e!==a&&(a=e,o.forEach((e,t)=>{e.classList.toggle("is-active",t===a)}),r.forEach((e,t)=>{const o=t===a,r=e.querySelector(".scroll-showcase-copy-description"),n=e.querySelector("[data-scroll-trigger-index]");e.classList.toggle("is-active",o),r&&r.setAttribute("aria-hidden",String(!o)),n&&n.setAttribute("aria-pressed",String(o))}))},d=()=>{i=0;const o=e.getBoundingClientRect(),r=parseFloat(window.getComputedStyle(t).top)||0,n=Math.max(e.offsetHeight-window.innerHeight-r,1),a=Math.min(Math.max((r-o.top)/n,0),1),d=Math.min(Math.floor(a*s),s-1);c=d,l(d)},u=()=>{i||(i=window.requestAnimationFrame(d))};window.addEventListener("scroll",u,{passive:!0}),window.addEventListener("resize",u),n.forEach((e,t)=>{e.addEventListener("click",()=>{c=t,l(t)})}),u()}function setupScrollScrubVideo(){const e=document.querySelector(".video-scrub-section"),t=document.querySelector("[data-scroll-scrub-video]");if(!e||!t)return;let o=0,r=0;const n=()=>{if(o=0,!r)return;const n=e.getBoundingClientRect(),s=Math.max(e.offsetHeight-window.innerHeight,1),a=Math.min(Math.max(-n.top/s,0),1);t.currentTime=r*a},s=()=>{o||(o=window.requestAnimationFrame(n))};t.addEventListener("loadedmetadata",()=>{r=t.duration||0,s()}),t.readyState>=1&&(r=t.duration||0),t.pause(),window.addEventListener("scroll",s,{passive:!0}),window.addEventListener("resize",s),s()}ctaButton&&statusMessage&&ctaButton.addEventListener("click",()=>{statusMessage.textContent="Interaction confirmed."}),setupScrollShowcase(),setupScrollScrubVideo();</script>
+  </body>
+</html>

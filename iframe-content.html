@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GM Rewards POC</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      html { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar { display: none; }
+    </style>
+  </head>
+  <body class="iframe-body">
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Prototype</p>
+        <h1>GM Rewards POC</h1>
+        <img src="https://placehold.co/600x400/000/fff?text=Masthead" style="width:100%" alt="MastheadPlaceholder" />
+        <p class="subtitle">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus consequatur, nostrum cum eligendi blanditiis assumenda laborum tempora error atque. 
+        </p>
+        <button id="cta-button" type="button">Test Interaction</button>
+        <p id="status-message" class="status-message" aria-live="polite">
+          Ready.
+        </p>
+        <section class="scroll-showcase-section">
+          <div class="scroll-showcase-stage">
+            <div class="scroll-showcase-frame">
+              <div class="scroll-showcase-media">
+                <img class="scroll-showcase-image is-active" src="https://picsum.photos/200/300?random=0" alt="Scroll showcase image 1" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=1" alt="Scroll showcase image 2" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=2" alt="Scroll showcase image 3" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=3" alt="Scroll showcase image 4" />
+              </div>
+              <div class="scroll-showcase-overlay">
+                <article class="scroll-showcase-copy is-active" data-scroll-copy-index="0">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="0" aria-pressed="true">Slide One</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="false">Earn points through purchases, service visits, and ongoing member activity.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="1">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="1" aria-pressed="false">Slide Two</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Track tier progress with clear milestones and visible reward unlocks.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="2">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="2" aria-pressed="false">Slide Three</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Redeem points across service, accessories, and future GM experiences.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="3">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="3" aria-pressed="false">Slide Four</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Connect local dealer offers to the rewards journey for more relevant promotions.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="video-scrub-section">
+          <div class="video-scrub-stage">
+            <div class="video-scrub-frame">
+              <video
+                class="video-scrub-media"
+                data-scroll-scrub-video
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              </video>
+              <div class="video-scrub-copy">
+                <p class="eyebrow">Video Moment</p>
+                <h2>Scroll To Drive The Story</h2>
+                <p>
+                  As this section enters view, the video advances with your scroll and reverses when you move back up the page.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <img src="https://placehold.co/1020x800/ddd/000?text=Other+Content" style="border-radius:28px" alt="Other Content Placeholder" />
+
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

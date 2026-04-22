@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GM Rewards POC</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" /> 
+    <link rel="stylesheet" href="styles.css" />
+
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">Prototype</p>
+        <h1>GM Rewards POC</h1>
+        <img src="https://placehold.co/600x400/000/fff?text=Masthead" style="width:100%" alt="MastheadPlaceholder" />
+        <p class="subtitle">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus consequatur, nostrum cum eligendi blanditiis assumenda laborum tempora error atque. 
+        </p>
+        <button id="cta-button" type="button">Test Interaction</button>
+        <p id="status-message" class="status-message" aria-live="polite">
+          Ready.
+        </p>
+        <section class="swiper-pin-section">
+          <div class="swiper-pin-stage">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://placehold.co/600x400/000/fff?text=Animate Image+1" alt="Placeholder Image 1" /></div>
+                    <div class="swiper-slide"><img src="https://placehold.co/600x400/111999/fff?text=Animate Image+2" alt="Placeholder Image 2" /></div>
+                    <div class="swiper-slide"><img src="https://placehold.co/600x400/000055/fff?text=Animate Image+3" alt="Placeholder Image 3" /></div>
+                    <div class="swiper-slide"><img src="https://placehold.co/600x400/330000/fff?text=Animate Image+4" alt="Placeholder Image 4" /></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </section>
+        <section class="scroll-showcase-section">
+          <div class="scroll-showcase-stage">
+            <div class="scroll-showcase-frame">
+              <div class="scroll-showcase-media">
+                <img class="scroll-showcase-image is-active" src="https://placehold.co/600x400/000/fff?text=Native+Image+1" alt="Scroll showcase image 1" />
+                <img class="scroll-showcase-image" src="https://placehold.co/600x400/111999/fff?text=Native+Image+2" alt="Scroll showcase image 2" />
+                <img class="scroll-showcase-image" src="https://placehold.co/600x400/000055/fff?text=Native+Image+3" alt="Scroll showcase image 3" />
+                <img class="scroll-showcase-image" src="https://placehold.co/600x400/330000/fff?text=Native+Image+4" alt="Scroll showcase image 4" />
+              </div>
+              <div class="scroll-showcase-overlay" data-scroll-showcase-overlay></div>
+            </div>
+          </div>
+        </section>
+        <section class="video-scrub-section">
+          <div class="video-scrub-stage">
+            <div class="video-scrub-frame">
+              <video
+                class="video-scrub-media"
+                data-scroll-scrub-video
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              </video>
+              <div class="video-scrub-copy">
+                <p class="eyebrow">Video Moment</p>
+                <h2>Scroll To Drive The Story</h2>
+                <p>
+                  As this section enters view, the video advances with your scroll and reverses when you move back up the page.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <img src="https://placehold.co/600x800/eee/000?text=Other+Content" alt="Other Content Placeholder" />
+
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

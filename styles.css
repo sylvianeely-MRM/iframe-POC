@@ -1,5 +1,6 @@
 :root {
     color-scheme: light;
+    --header-offset: 140px;
     --background: #f6f1e8;
     --surface: rgba(255, 255, 255, 0.78);
     --text: #333;
@@ -239,14 +240,14 @@ button:focus-visible {
 
 .scroll-showcase-section {
     --showcase-count: 4;
-    min-height: calc(100vh + max(0, var(--showcase-count) - 1) * 65vh);
+    min-height: calc(var(--showcase-count) * 100vh);
     margin-top: 0;
 }
 
 .scroll-showcase-stage {
     position: sticky;
-    top: 24px;
-    min-height: calc(100vh - 48px);
+    top: var(--header-offset);
+    min-height: calc(100vh - var(--header-offset));
     display: grid;
     align-items: center;
 }
@@ -383,8 +384,8 @@ button:focus-visible {
 
 .video-scrub-stage {
     position: sticky;
-    top: 24px;
-    min-height: calc(100vh - 48px);
+    top: var(--header-offset);
+    min-height: calc(100vh - var(--header-offset));
     display: grid;
     align-items: center;
 }

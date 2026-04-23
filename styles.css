@@ -1,6 +1,6 @@
 :root {
     color-scheme: light;
-    --header-offset: 140px;
+    --header-offset: 50px;
     --background: #f6f1e8;
     --surface: rgba(255, 255, 255, 0.78);
     --text: #333;
@@ -249,7 +249,7 @@ button:focus-visible {
     top: var(--header-offset);
     min-height: calc(100vh - var(--header-offset));
     display: grid;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .scroll-showcase-frame {
@@ -387,7 +387,7 @@ button:focus-visible {
     top: var(--header-offset);
     min-height: calc(100vh - var(--header-offset));
     display: grid;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .video-scrub-frame {

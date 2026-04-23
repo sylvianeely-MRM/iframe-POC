@@ -1,15 +1,3 @@
-// ---------------------------------------------------------------------------
-// CTA Button — updates the status message text when the button is clicked,
-// providing lightweight feedback for the prototype interaction test.
-// ---------------------------------------------------------------------------
-const ctaButton = document.getElementById("cta-button");
-const statusMessage = document.getElementById("status-message");
-
-if (ctaButton && statusMessage) {
-    ctaButton.addEventListener("click", () => {
-        statusMessage.textContent = "Interaction confirmed.";
-    });
-}
 
 // ---------------------------------------------------------------------------
 // Scroll Showcase — drives a sticky image/copy carousel by scroll position.

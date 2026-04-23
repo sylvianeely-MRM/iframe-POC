@@ -121,7 +121,7 @@ a {
 .iframe-panel__frame {
     display: block;
     width: 100%;
-    min-height: 80vh;
+    height: 80vh;
     border: 0;
     border-radius: 18px;
     background: #fff;
@@ -162,7 +162,7 @@ a {
     }
 
     .iframe-panel__frame {
-        min-height: 70vh;
+        height: 70vh;
         border-radius: 14px;
     }
 }
@@ -241,7 +241,7 @@ button:focus-visible {
 .scroll-showcase-section {
     --showcase-count: 4;
     min-height: calc(var(--showcase-count) * 750px);
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .scroll-showcase-stage {
@@ -379,7 +379,7 @@ button:focus-visible {
 
 .video-scrub-section {
     min-height: 1800px;
-    margin-top: 0;
+    margin-top: 50px;
 }
 
 .video-scrub-stage {

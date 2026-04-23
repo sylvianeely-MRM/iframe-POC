@@ -434,11 +434,11 @@ button:focus-visible {
 
 @media (max-width: 640px) {
     .video-scrub-frame {
-        min-height: 62vh;
+        min-height: 55vh;
     }
 
     .video-scrub-media {
-        height: 62vh;
+        height: 55vh;
     }
 
     .video-scrub-copy {
@@ -450,7 +450,7 @@ button:focus-visible {
 
     .scroll-showcase-frame,
     .scroll-showcase-media {
-        min-height: 62vh;
+        min-height: 55vh;
     }
 
     .scroll-showcase-overlay {

@@ -254,7 +254,7 @@ button:focus-visible {
 .scroll-showcase-frame {
     position: relative;
     overflow: hidden;
-    min-height: 75vh;
+    min-height: 68vh;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -262,7 +262,7 @@ button:focus-visible {
 
 .scroll-showcase-media {
     position: relative;
-    min-height: 75vh;
+    min-height: 68vh;
 }
 
 .scroll-showcase-image {
@@ -392,7 +392,7 @@ button:focus-visible {
 .video-scrub-frame {
     position: relative;
     overflow: hidden;
-    min-height: 75vh;
+    min-height: 68vh;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -401,7 +401,7 @@ button:focus-visible {
 .video-scrub-media {
     display: block;
     width: 100%;
-    height: 75vh;
+    height: 68vh;
     object-fit: cover;
 }
 
@@ -433,11 +433,11 @@ button:focus-visible {
 
 @media (max-width: 640px) {
     .video-scrub-frame {
-        min-height: 75vh;
+        min-height: 62vh;
     }
 
     .video-scrub-media {
-        height: 75vh;
+        height: 62vh;
     }
 
     .video-scrub-copy {
@@ -449,7 +449,7 @@ button:focus-visible {
 
     .scroll-showcase-frame,
     .scroll-showcase-media {
-        min-height: 75vh;
+        min-height: 62vh;
     }
 
     .scroll-showcase-overlay {

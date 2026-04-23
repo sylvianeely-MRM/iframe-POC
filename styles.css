@@ -240,14 +240,14 @@ button:focus-visible {
 
 .scroll-showcase-section {
     --showcase-count: 4;
-    min-height: calc(var(--showcase-count) * 100vh);
+    min-height: calc(var(--showcase-count) * 80vh);
     margin-top: 30px;
 }
 
 .scroll-showcase-stage {
     position: sticky;
     top: var(--header-offset);
-    min-height: calc(100vh - var(--header-offset));
+    min-height: calc(80vh - var(--header-offset));
     display: grid;
     align-items: flex-start;
 }
@@ -385,7 +385,7 @@ button:focus-visible {
 .video-scrub-stage {
     position: sticky;
     top: var(--header-offset);
-    min-height: calc(100vh - var(--header-offset));
+    min-height: calc(80vh - var(--header-offset));
     display: grid;
     align-items: flex-start;
 }

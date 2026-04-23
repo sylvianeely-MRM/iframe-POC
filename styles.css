@@ -101,7 +101,7 @@ a {
 }
 
 .iframe-body {
-    background-color: bisque;
+    background-color: #fff;
     margin: 0;
     overflow-x: hidden;
 }
@@ -241,7 +241,7 @@ button:focus-visible {
 .scroll-showcase-section {
     --showcase-count: 4;
     min-height: calc(var(--showcase-count) * 100vh);
-    margin-top: 0;
+    margin-top: 30px;
 }
 
 .scroll-showcase-stage {

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: animation-poc
+    runtime: static
+    staticPublishPath: .
+    buildCommand: ""
+    pullRequestPreviewsEnabled: true
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=0, must-revalidate
+      - path: /styles.css
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /script.js
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

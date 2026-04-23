@@ -23,6 +23,11 @@
     box-sizing: border-box;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
@@ -94,6 +99,12 @@ a {
     transform: scaleX(1);
 }
 
+.iframe-body {
+    background-color: bisque;
+    margin: 0;
+    overflow-x: hidden;
+}
+
 .page {
     min-height: 100vh;
     display: grid;
@@ -127,6 +138,7 @@ a {
     }
 
     .site-header__inner {
+        width: 100%;
         padding: 16px 18px;
         border-radius: 24px;
         flex-direction: column;
@@ -144,7 +156,7 @@ a {
 
     .iframe-panel {
         width: 100%;
-        padding: 12px;
+        padding: 0;
         border-radius: 20px;
     }
 
@@ -205,19 +217,30 @@ button:focus-visible {
 
 @media (max-width: 640px) {
     .hero {
-        padding: 28px;
+        width: 100%;
+        padding: 0;
         border-radius: 20px;
     }
 
     .subtitle {
         font-size: 1rem;
     }
+/* 
+    .scroll-showcase-stage {
+        top: 0;
+        min-height: 100vh;
+    }
+
+    .video-scrub-stage {
+        top: 0;
+        min-height: 100vh;
+    } */
 }
 
 .scroll-showcase-section {
     --showcase-count: 4;
     min-height: calc(100vh + max(0, var(--showcase-count) - 1) * 65vh);
-    margin-top: 48px;
+    margin-top: 0;
 }
 
 .scroll-showcase-stage {
@@ -231,7 +254,7 @@ button:focus-visible {
 .scroll-showcase-frame {
     position: relative;
     overflow: hidden;
-    min-height: 70vh;
+    min-height: 75vh;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -239,7 +262,7 @@ button:focus-visible {
 
 .scroll-showcase-media {
     position: relative;
-    min-height: 70vh;
+    min-height: 75vh;
 }
 
 .scroll-showcase-image {
@@ -274,18 +297,16 @@ button:focus-visible {
 
 .scroll-showcase-copy {
     max-width: 32ch;
-    padding: 18px 20px;
-    border-radius: 22px;
-    background: rgba(250,250,250, 0.72);
     color: var(--text);
-    transition: background-color 260ms ease, transform 260ms ease;
+    transition: transform 260ms ease;
 }
 
 .scroll-showcase-copy-title {
     appearance: none;
     border: 0;
-    padding: 0;
-    background: transparent;
+    padding: 14px 16px;
+    border-radius: 22px;
+    background: rgba(250,250,250, 0.72);
     color: inherit;
     cursor: pointer;
     display: inline-flex;
@@ -294,6 +315,7 @@ button:focus-visible {
     font-size: 1rem;
     font-weight: 600;
     text-align: left;
+    transition: background-color 260ms ease;
 }
 
 .scroll-showcase-copy-title::before {
@@ -319,29 +341,44 @@ button:focus-visible {
 }
 
 .scroll-showcase-copy-description {
-    margin: 10px 0 0;
+    margin: 8px 0 0;
+    padding: 8px 16px;
+    border-radius: 18px;
+    background: rgba(250,250,250, 0.72);
     line-height: 1.5;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transform: translateY(-8px);
-    transition: max-height 300ms ease, opacity 220ms ease, transform 220ms ease;
+    transform: translateY(-12px) scale(0.94);
+    transform-origin: top center;
+    filter: blur(6px);
+    transition:
+        max-height 500ms cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 320ms ease 100ms,
+        transform 550ms cubic-bezier(0.22, 1.8, 0.36, 1) 80ms,
+        filter 350ms ease 80ms,
+        background-color 260ms ease;
 }
 
 .scroll-showcase-copy.is-active {
-    background: rgba(250,250,250, 0.82);
     transform: translateY(0);
+}
+
+.scroll-showcase-copy.is-active .scroll-showcase-copy-title {
+    background: rgba(250,250,250, 0.92);
 }
 
 .scroll-showcase-copy.is-active .scroll-showcase-copy-description {
     max-height: 120px;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    background: rgba(250,250,250, 0.82);
 }
 
 .video-scrub-section {
     min-height: 240vh;
-    margin-top: 48px;
+    margin-top: 0;
 }
 
 .video-scrub-stage {
@@ -355,7 +392,7 @@ button:focus-visible {
 .video-scrub-frame {
     position: relative;
     overflow: hidden;
-    min-height: 70vh;
+    min-height: 75vh;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -364,7 +401,7 @@ button:focus-visible {
 .video-scrub-media {
     display: block;
     width: 100%;
-    height: 70vh;
+    height: 75vh;
     object-fit: cover;
 }
 
@@ -396,11 +433,11 @@ button:focus-visible {
 
 @media (max-width: 640px) {
     .video-scrub-frame {
-        min-height: 60vh;
+        min-height: 75vh;
     }
 
     .video-scrub-media {
-        height: 60vh;
+        height: 75vh;
     }
 
     .video-scrub-copy {
@@ -412,7 +449,7 @@ button:focus-visible {
 
     .scroll-showcase-frame,
     .scroll-showcase-media {
-        min-height: 60vh;
+        min-height: 75vh;
     }
 
     .scroll-showcase-overlay {

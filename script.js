@@ -1,3 +1,7 @@
+// ---------------------------------------------------------------------------
+// CTA Button — updates the status message text when the button is clicked,
+// providing lightweight feedback for the prototype interaction test.
+// ---------------------------------------------------------------------------
 const ctaButton = document.getElementById("cta-button");
 const statusMessage = document.getElementById("status-message");
 
@@ -7,6 +11,11 @@ if (ctaButton && statusMessage) {
     });
 }
 
+// ---------------------------------------------------------------------------
+// Scroll Showcase — drives a sticky image/copy carousel by scroll position.
+// As the user scrolls through the tall section, the active slide advances
+// proportionally. Slides can also be changed by clicking the copy triggers.
+// ---------------------------------------------------------------------------
 function setupScrollShowcase() {
     const section = document.querySelector(".scroll-showcase-section");
     const stage = document.querySelector(".scroll-showcase-stage");
@@ -24,12 +33,16 @@ function setupScrollShowcase() {
         return;
     }
 
+    // Keep the CSS --showcase-count var in sync with the actual slide count
+    // so the section height calculation in CSS stays accurate.
     section.style.setProperty("--showcase-count", String(slideCount));
 
     let activeIndex = 0;
     let rafId = 0;
     let selectedIndex = 0;
 
+    // Toggles the is-active class on images and copy panels, and keeps
+    // aria-hidden / aria-pressed attributes in sync for accessibility.
     const setActiveIndex = (nextIndex) => {
         if (nextIndex === activeIndex) {
             return;
@@ -58,6 +71,9 @@ function setupScrollShowcase() {
         });
     };
 
+    // Calculates scroll progress within the section (0–1) and maps it to a
+    // slide index. Uses the sticky element's computed top offset as the start
+    // anchor so the first slide activates exactly when the stage becomes sticky.
     const updateShowcase = () => {
         rafId = 0;
 
@@ -73,6 +89,8 @@ function setupScrollShowcase() {
         setActiveIndex(nextIndex);
     };
 
+    // Debounces updates via requestAnimationFrame to avoid redundant
+    // recalculations on every scroll and resize event.
     const requestUpdate = () => {
         if (!rafId) {
             rafId = window.requestAnimationFrame(updateShowcase);
@@ -82,6 +100,7 @@ function setupScrollShowcase() {
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
 
+    // Allow manual slide selection by clicking a copy trigger button.
     triggers.forEach((trigger, index) => {
         trigger.addEventListener("click", () => {
             selectedIndex = index;
@@ -92,6 +111,11 @@ function setupScrollShowcase() {
     requestUpdate();
 }
 
+// ---------------------------------------------------------------------------
+// Scroll Scrub Video — scrubs a video's playhead in sync with scroll position.
+// The video is paused at all times; currentTime is set directly so the video
+// acts as a frame-accurate animation driven by the user's scroll depth.
+// ---------------------------------------------------------------------------
 function setupScrollScrubVideo() {
     const videoSection = document.querySelector(".video-scrub-section");
     const video = document.querySelector("[data-scroll-scrub-video]");
@@ -103,6 +127,8 @@ function setupScrollScrubVideo() {
     let rafId = 0;
     let duration = 0;
 
+    // Maps scroll progress through the section (0–1) to a time offset within
+    // the video's total duration and sets currentTime accordingly.
     const updateVideoProgress = () => {
         rafId = 0;
 
@@ -117,12 +143,16 @@ function setupScrollScrubVideo() {
         video.currentTime = duration * progress;
     };
 
+    // Debounces updates via requestAnimationFrame to avoid redundant
+    // recalculations on every scroll and resize event.
     const requestUpdate = () => {
         if (!rafId) {
             rafId = window.requestAnimationFrame(updateVideoProgress);
         }
     };
 
+    // Capture duration once metadata is available; also handles the case where
+    // metadata is already loaded before this script runs (readyState >= 1).
     video.addEventListener("loadedmetadata", () => {
         duration = video.duration || 0;
         requestUpdate();

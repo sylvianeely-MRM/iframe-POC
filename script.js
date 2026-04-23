@@ -162,7 +162,34 @@ function setupScrollScrubVideo() {
         duration = video.duration || 0;
     }
 
+    // Android Chrome blocks currentTime seeking until the video has been
+    // started at least once by a user gesture. A play→pause cycle on the
+    // first scroll or touch event unlocks seeking without any visible flash.
+    let unlocked = false;
+    const unlockVideo = () => {
+        if (unlocked) {
+            return;
+        }
+        unlocked = true;
+        const p = video.play();
+        if (p && typeof p.then === "function") {
+            p.then(() => {
+                video.pause();
+                // Force an initial frame decode so subsequent currentTime
+                // assignments render immediately on Android.
+                video.currentTime = 0;
+                requestUpdate();
+            }).catch(() => {});
+        } else {
+            video.pause();
+        }
+        window.removeEventListener("touchstart", unlockVideo);
+        window.removeEventListener("scroll", unlockVideo);
+    };
+
     video.pause();
+    window.addEventListener("touchstart", unlockVideo, { passive: true, once: true });
+    window.addEventListener("scroll", unlockVideo, { passive: true, once: true });
     window.addEventListener("scroll", requestUpdate, { passive: true });
     window.addEventListener("resize", requestUpdate);
     requestUpdate();

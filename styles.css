@@ -240,14 +240,14 @@ button:focus-visible {
 
 .scroll-showcase-section {
     --showcase-count: 4;
-    min-height: calc(var(--showcase-count) * 80vh);
+    min-height: calc(var(--showcase-count) * 750px);
     margin-top: 30px;
 }
 
 .scroll-showcase-stage {
     position: sticky;
     top: var(--header-offset);
-    min-height: calc(80vh - var(--header-offset));
+    min-height: 600px;
     display: grid;
     align-items: flex-start;
 }
@@ -255,7 +255,7 @@ button:focus-visible {
 .scroll-showcase-frame {
     position: relative;
     overflow: hidden;
-    min-height: 68vh;
+    height: 600px;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -263,7 +263,7 @@ button:focus-visible {
 
 .scroll-showcase-media {
     position: relative;
-    min-height: 68vh;
+    height: 600px;
 }
 
 .scroll-showcase-image {
@@ -378,14 +378,14 @@ button:focus-visible {
 }
 
 .video-scrub-section {
-    min-height: 240vh;
+    min-height: 1800px;
     margin-top: 0;
 }
 
 .video-scrub-stage {
     position: sticky;
     top: var(--header-offset);
-    min-height: calc(80vh - var(--header-offset));
+    min-height: 600px;
     display: grid;
     align-items: flex-start;
 }
@@ -393,7 +393,7 @@ button:focus-visible {
 .video-scrub-frame {
     position: relative;
     overflow: hidden;
-    min-height: 68vh;
+    height: 600px;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -402,7 +402,7 @@ button:focus-visible {
 .video-scrub-media {
     display: block;
     width: 100%;
-    height: 68vh;
+    height: 600px;
     object-fit: cover;
 }
 
@@ -434,11 +434,11 @@ button:focus-visible {
 
 @media (max-width: 640px) {
     .video-scrub-frame {
-        min-height: 55vh;
+        height: 550px;
     }
 
     .video-scrub-media {
-        height: 55vh;
+        height: 550px;
     }
 
     .video-scrub-copy {
@@ -450,7 +450,7 @@ button:focus-visible {
 
     .scroll-showcase-frame,
     .scroll-showcase-media {
-        min-height: 55vh;
+        height: 550px;
     }
 
     .scroll-showcase-overlay {

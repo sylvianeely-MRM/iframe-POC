@@ -242,6 +242,10 @@ button:focus-visible {
     --showcase-count: 4;
     min-height: calc(var(--showcase-count) * 400px);
     margin-top: 50px;
+    margin-bottom: -800px;
+    position: relative;
+    z-index: 1;
+    background: var(--background);
 }
 
 .scroll-showcase-stage {
@@ -382,6 +386,9 @@ button:focus-visible {
     margin-top: 50px;
     margin-bottom: -800px;
     overflow: clip;
+    position: relative;
+    z-index: 2;
+    background: var(--background);
 }
 
 .video-scrub-stage {

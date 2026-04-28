@@ -242,7 +242,7 @@ button:focus-visible {
     --showcase-count: 4;
     min-height: calc(var(--showcase-count) * 400px);
     margin-top: 50px;
-    margin-bottom: -800px;
+    margin-bottom: -200px;
     position: relative;
     z-index: 1;
     background: var(--background);
@@ -384,7 +384,7 @@ button:focus-visible {
 .video-scrub-section {
     min-height: 1400px;
     margin-top: 50px;
-    margin-bottom: -800px;
+    margin-bottom: -200px;
     overflow: clip;
     position: relative;
     z-index: 2;

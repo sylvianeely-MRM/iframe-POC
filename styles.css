@@ -1,7 +1,7 @@
 :root {
     color-scheme: light;
-    --header-offset: 50px;
-    --background: #f6f1e8;
+    --header-offset: 140px;
+    --background: #fff;
     --surface: rgba(255, 255, 255, 0.78);
     --text: #333;
     --muted: #52606d;
@@ -46,6 +46,7 @@ a {
     top: 0;
     z-index: 20;
     padding: 20px 24px 0;
+    height: var(--header-offset);
 }
 
 .site-header__inner {
@@ -104,6 +105,11 @@ a {
     background-color: #fff;
     margin: 0;
     overflow-x: hidden;
+}
+
+.iframe-body .page {
+    display: block;
+    min-height: 0;
 }
 
 .page {

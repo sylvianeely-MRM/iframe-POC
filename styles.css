@@ -135,9 +135,10 @@ a {
 
 .hero {
     width: min(1100px, 100%);
+    margin-inline: auto;
     padding: 40px;
     border-radius: 28px;
-    }
+}
 
 @media screen and (max-width: 640px) {
     .site-header {
@@ -259,6 +260,7 @@ button:focus-visible {
     min-height: calc(100vh - var(--header-offset));
     display: grid;
     align-items: center;
+    background: var(--background);
 }
 
 .scroll-showcase-frame {
@@ -400,6 +402,7 @@ button:focus-visible {
     min-height: calc(100vh - var(--header-offset));
     display: grid;
     align-items: center;
+    background: var(--background);
 }
 
 .video-scrub-frame {

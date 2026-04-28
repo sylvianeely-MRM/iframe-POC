@@ -247,7 +247,7 @@ button:focus-visible {
 
 .scroll-showcase-section {
     --showcase-count: 4;
-    min-height: calc(100vh + max(0, var(--showcase-count) - 1) * 65vh);
+    min-height: calc(var(--showcase-count) * 100vh);
     margin-top: 50px;
     position: relative;
     z-index: 1;
@@ -266,7 +266,7 @@ button:focus-visible {
 .scroll-showcase-frame {
     position: relative;
     overflow: hidden;
-    min-height: 70vh;
+    height: 70vh;
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
@@ -274,7 +274,7 @@ button:focus-visible {
 
 .scroll-showcase-media {
     position: relative;
-    min-height: 70vh;
+    height: 70vh;
 }
 
 .scroll-showcase-image {
@@ -465,7 +465,7 @@ button:focus-visible {
 
     .scroll-showcase-frame,
     .scroll-showcase-media {
-        min-height: 60vh;
+        height: 60vh;
     }
 
     .scroll-showcase-overlay {

@@ -115,12 +115,25 @@ a {
 
 /* Inside the iframe the sections just fill the viewport — scroll depth lives
    in the parent wrapper created by widget.js, not inside the iframe. */
-.iframe-body .scroll-showcase-section {
+.iframe-body .scroll-showcase-section,
+.iframe-body .video-scrub-section {
     min-height: unset;
     height: 100vh;
     width: 100%;
     padding: 0;
     margin-top: 0;
+    /* Stack both sections on top of each other */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Wrapper needs position:relative so absolute children are contained */
+.iframe-body .page {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .iframe-body .scroll-showcase-stage {
@@ -136,22 +149,21 @@ a {
     height: 600px;
 }
 
+/* Video section starts below, out of view */
 .iframe-body .video-scrub-section {
-    min-height: unset;
-    height: 100vh;
-    width: 100%;
-    padding: 0;
-    margin-top: 0;
-    display: none;
+    transform: translateY(100%);
+    pointer-events: none;
 }
 
-/* Switch to video phase by toggling a class on <body> from script.js */
+/* Switch to video phase — showcase slides up, video slides up into place */
 .iframe-body.is-video-phase .scroll-showcase-section {
-    display: none;
+    transform: translateY(-100%);
+    pointer-events: none;
 }
 
 .iframe-body.is-video-phase .video-scrub-section {
-    display: block;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 .iframe-body .video-scrub-stage {
@@ -163,6 +175,7 @@ a {
 
 .iframe-body .video-scrub-frame {
     height: 600px;
+    margin: 25px 0;
 }
 
 .page {
@@ -330,6 +343,7 @@ button:focus-visible {
     border-radius: 28px;
     background: #120d08;
     box-shadow: var(--shadow);
+    margin: 25px 0;
 }
 
 .scroll-showcase-media {

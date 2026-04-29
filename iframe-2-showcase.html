@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iframe  POC</title>
+    <link rel="stylesheet" href="styles-2.css" />
+    <style>
+      html { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar { display: none; }
+    </style>
+  </head>
+  <body class="iframe-body">
+    <main class="page">
+
+      <section class="scroll-showcase-section">
+          <div class="scroll-showcase-stage">
+            <div class="scroll-showcase-frame">
+              <div class="scroll-showcase-media">
+                <img class="scroll-showcase-image is-active" src="https://picsum.photos/200/300?random=0" alt="Scroll showcase image 1" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=1" alt="Scroll showcase image 2" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=2" alt="Scroll showcase image 3" />
+                <img class="scroll-showcase-image" src="https://picsum.photos/400/400?random=3" alt="Scroll showcase image 4" />
+              </div>
+              <div class="scroll-showcase-overlay">
+                <article class="scroll-showcase-copy is-active" data-scroll-copy-index="0">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="0" aria-pressed="true">Slide One</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="false">Earn points through purchases, service visits, and ongoing member activity.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="1">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="1" aria-pressed="false">Slide Two</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Track tier progress with clear milestones and visible reward unlocks.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="2">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="2" aria-pressed="false">Slide Three</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Redeem points across service, accessories, and future experiences.</p>
+                </article>
+                <article class="scroll-showcase-copy" data-scroll-copy-index="3">
+                  <button class="scroll-showcase-copy-title" type="button" data-scroll-trigger-index="3" aria-pressed="false">Slide Four</button>
+                  <p class="scroll-showcase-copy-description" aria-hidden="true">Connect local dealer offers to the rewards journey for more relevant promotions.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+    </main>
+
+    <script src="script-2.js"></script>
+  </body>
+</html>

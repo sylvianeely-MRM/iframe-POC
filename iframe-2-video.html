@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iframe  POC</title>
+    <link rel="stylesheet" href="styles-2.css" />
+    <style>
+      html { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar { display: none; }
+    </style>
+  </head>
+  <body class="iframe-body">
+    <main class="page">
+   
+        <section class="video-scrub-section">          <div class="video-scrub-stage">
+            <div class="video-scrub-frame">
+              <video
+                class="video-scrub-media"
+                data-scroll-scrub-video
+                muted
+                playsinline
+                preload="auto"
+              >
+                <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+              </video>
+              <div class="video-scrub-copy">
+                <p class="eyebrow">Video Moment</p>
+                <h2>Scroll To Drive The Story</h2>
+                <p>
+                  As this section enters view, the video advances with your scroll and reverses when you move back up the page.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <script src="script-2.js"></script>
+  </body>
+</html>

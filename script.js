@@ -1,187 +1,126 @@
+// ---------------------------------------------------------------------------
+// script.js — Iframe content animation driver (single-iframe, both sections)
+//
+// Progress (0→1) is received from the parent page via postMessage (widget.js).
+// This iframe contains two sections with different scroll depths:
+//
+//   Showcase: 3000px out of 4500px total → progress 0.000 → 0.667
+//   Video:    1500px out of 4500px total → progress 0.667 → 1.000
+//
+// Each section's progress is normalised to its own 0→1 range.
+// These values must match the data-scroll-depth on the parent iframe
+// and the SHOWCASE_DEPTH / VIDEO_DEPTH constants below.
+// ---------------------------------------------------------------------------
+
+var SHOWCASE_DEPTH = 1600;
+var VIDEO_DEPTH    = 800;
+var TOTAL_DEPTH    = SHOWCASE_DEPTH + VIDEO_DEPTH;
+
+var SHOWCASE_END   = SHOWCASE_DEPTH / TOTAL_DEPTH; // 0.6667
 
 // ---------------------------------------------------------------------------
-// Scroll Showcase — drives a sticky image/copy carousel by scroll position.
-// As the user scrolls through the tall section, the active slide advances
-// proportionally. Slides can also be changed by clicking the copy triggers.
+// Scroll Showcase — cycles through slides based on a 0→1 progress value.
+// Returns applyProgress(p), or null if no showcase is found.
 // ---------------------------------------------------------------------------
 function setupScrollShowcase() {
-    const section = document.querySelector(".scroll-showcase-section");
-    const stage = document.querySelector(".scroll-showcase-stage");
+    var section  = document.querySelector(".scroll-showcase-section");
+    var stage    = document.querySelector(".scroll-showcase-stage");
 
-    if (!section || !stage) {
-        return;
-    }
+    if (!section || !stage) return null;
 
-    const images = Array.from(section.querySelectorAll(".scroll-showcase-image"));
-    const copies = Array.from(section.querySelectorAll("[data-scroll-copy-index]"));
-    const triggers = Array.from(section.querySelectorAll("[data-scroll-trigger-index]"));
-    const slideCount = Math.min(images.length, copies.length);
+    var images     = Array.from(section.querySelectorAll(".scroll-showcase-image"));
+    var copies     = Array.from(section.querySelectorAll("[data-scroll-copy-index]"));
+    var triggers   = Array.from(section.querySelectorAll("[data-scroll-trigger-index]"));
+    var slideCount = Math.min(images.length, copies.length);
 
-    if (!slideCount) {
-        return;
-    }
+    if (!slideCount) return null;
 
-    // Keep the CSS --showcase-count var in sync with the actual slide count
-    // so the section height calculation in CSS stays accurate.
-    section.style.setProperty("--showcase-count", String(slideCount));
+    var activeIndex = 0;
 
-    let activeIndex = 0;
-    let rafId = 0;
-    let selectedIndex = 0;
-
-    // Toggles the is-active class on images and copy panels, and keeps
-    // aria-hidden / aria-pressed attributes in sync for accessibility.
-    const setActiveIndex = (nextIndex) => {
-        if (nextIndex === activeIndex) {
-            return;
-        }
-
+    function setActiveIndex(nextIndex) {
+        if (nextIndex === activeIndex) return;
         activeIndex = nextIndex;
 
-        images.forEach((image, index) => {
-            image.classList.toggle("is-active", index === activeIndex);
+        images.forEach(function(img, i) {
+            img.classList.toggle("is-active", i === activeIndex);
         });
 
-        copies.forEach((copy, index) => {
-            const isActive = index === activeIndex;
-            const description = copy.querySelector(".scroll-showcase-copy-description");
-            const trigger = copy.querySelector("[data-scroll-trigger-index]");
-
+        copies.forEach(function(copy, i) {
+            var isActive    = i === activeIndex;
+            var description = copy.querySelector(".scroll-showcase-copy-description");
+            var trigger     = copy.querySelector("[data-scroll-trigger-index]");
             copy.classList.toggle("is-active", isActive);
-
-            if (description) {
-                description.setAttribute("aria-hidden", String(!isActive));
-            }
-
-            if (trigger) {
-                trigger.setAttribute("aria-pressed", String(isActive));
-            }
+            if (description) description.setAttribute("aria-hidden", String(!isActive));
+            if (trigger)     trigger.setAttribute("aria-pressed", String(isActive));
         });
-    };
+    }
 
-    // Calculates scroll progress within the section (0–1) and maps it to a
-    // slide index. Uses the sticky element's computed top offset as the start
-    // anchor so the first slide activates exactly when the stage becomes sticky.
-    const updateShowcase = () => {
-        rafId = 0;
-
-        const rect = section.getBoundingClientRect();
-        const stickyTop = parseFloat(window.getComputedStyle(stage).top) || 0;
-        const startOffset = stickyTop;
-        const scrollRange = Math.max(section.offsetHeight - window.innerHeight - startOffset, 1);
-        const progress = Math.min(Math.max((startOffset - rect.top) / scrollRange, 0), 1);
-        const nextIndex = Math.min(Math.floor(progress * slideCount), slideCount - 1);
-
-        selectedIndex = nextIndex;
-
-        setActiveIndex(nextIndex);
-    };
-
-    // Debounces updates via requestAnimationFrame to avoid redundant
-    // recalculations on every scroll and resize event.
-    const requestUpdate = () => {
-        if (!rafId) {
-            rafId = window.requestAnimationFrame(updateShowcase);
-        }
-    };
-
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    // Allow manual slide selection by clicking a copy trigger button.
-    triggers.forEach((trigger, index) => {
-        trigger.addEventListener("click", () => {
-            selectedIndex = index;
-            setActiveIndex(index);
-        });
+    triggers.forEach(function(trigger, i) {
+        trigger.addEventListener("click", function() { setActiveIndex(i); });
     });
 
-    requestUpdate();
+    return function applyProgress(progress) {
+        var index = Math.min(Math.floor(progress * slideCount), slideCount - 1);
+        setActiveIndex(index);
+    };
 }
 
 // ---------------------------------------------------------------------------
-// Scroll Scrub Video — scrubs a video's playhead in sync with scroll position.
-// The video is paused at all times; currentTime is set directly so the video
-// acts as a frame-accurate animation driven by the user's scroll depth.
+// Scroll Scrub Video — scrubs video.currentTime based on a 0→1 progress value.
+// Returns applyProgress(p), or null if no video is found.
 // ---------------------------------------------------------------------------
 function setupScrollScrubVideo() {
-    const videoSection = document.querySelector(".video-scrub-section");
-    const video = document.querySelector("[data-scroll-scrub-video]");
+    var video = document.querySelector("[data-scroll-scrub-video]");
 
-    if (!videoSection || !video) {
-        return;
-    }
+    if (!video) return null;
 
-    let rafId = 0;
-    let duration = 0;
+    var duration = 0;
+    var unlocked = false;
 
-    // Maps scroll progress through the section (0–1) to a time offset within
-    // the video's total duration and sets currentTime accordingly.
-    const updateVideoProgress = () => {
-        rafId = 0;
-
-        if (!duration) {
-            return;
-        }
-
-        const rect = videoSection.getBoundingClientRect();
-        const scrollRange = Math.max(videoSection.offsetHeight - window.innerHeight, 1);
-        const progress = Math.min(Math.max(-rect.top / scrollRange, 0), 1);
-
-        video.currentTime = duration * progress;
-    };
-
-    // Debounces updates via requestAnimationFrame to avoid redundant
-    // recalculations on every scroll and resize event.
-    const requestUpdate = () => {
-        if (!rafId) {
-            rafId = window.requestAnimationFrame(updateVideoProgress);
-        }
-    };
-
-    // Capture duration once metadata is available; also handles the case where
-    // metadata is already loaded before this script runs (readyState >= 1).
-    video.addEventListener("loadedmetadata", () => {
-        duration = video.duration || 0;
-        requestUpdate();
-    });
-
-    if (video.readyState >= 1) {
-        duration = video.duration || 0;
-    }
-
-    // Android Chrome blocks currentTime seeking until the video has been
-    // started at least once by a user gesture. A play→pause cycle on the
-    // first scroll or touch event unlocks seeking without any visible flash.
-    let unlocked = false;
-    const unlockVideo = () => {
-        if (unlocked) {
-            return;
-        }
+    function unlockVideo() {
+        if (unlocked) return;
         unlocked = true;
-        const p = video.play();
+        var p = video.play();
         if (p && typeof p.then === "function") {
-            p.then(() => {
-                video.pause();
-                // Force an initial frame decode so subsequent currentTime
-                // assignments render immediately on Android.
-                video.currentTime = 0;
-                requestUpdate();
-            }).catch(() => {});
+            p.then(function() { video.pause(); video.currentTime = 0; }).catch(function() {});
         } else {
             video.pause();
         }
-        window.removeEventListener("touchstart", unlockVideo);
-        window.removeEventListener("scroll", unlockVideo);
-    };
+    }
 
+    video.addEventListener("loadedmetadata", function() { duration = video.duration || 0; });
+    if (video.readyState >= 1) duration = video.duration || 0;
     video.pause();
-    window.addEventListener("touchstart", unlockVideo, { passive: true, once: true });
-    window.addEventListener("scroll", unlockVideo, { passive: true, once: true });
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    requestUpdate();
+
+    return function applyProgress(progress) {
+        if (!duration) return;
+        unlockVideo();
+        video.currentTime = duration * progress;
+    };
 }
 
-setupScrollShowcase();
-setupScrollScrubVideo();
+// ---------------------------------------------------------------------------
+// Wire up — receive scrollProgress from widget.js, split into section phases
+// ---------------------------------------------------------------------------
+var applyShowcaseProgress = setupScrollShowcase();
+var applyVideoProgress    = setupScrollScrubVideo();
+
+window.addEventListener("message", function(e) {
+    if (!e.data || e.data.type !== "scrollProgress") return;
+    var progress = e.data.progress;
+    if (typeof progress !== "number") return;
+
+    // Toggle the video phase by class — far more reliable than setting scrollTop
+    var inVideoPhase = progress >= SHOWCASE_END;
+    document.body.classList.toggle('is-video-phase', inVideoPhase);
+
+    if (applyShowcaseProgress) {
+        var showcaseP = Math.min(Math.max(progress / SHOWCASE_END, 0), 1);
+        applyShowcaseProgress(showcaseP);
+    }
+
+    if (applyVideoProgress) {
+        var videoP = Math.min(Math.max((progress - SHOWCASE_END) / (1 - SHOWCASE_END), 0), 1);
+        applyVideoProgress(videoP);
+    }
+});

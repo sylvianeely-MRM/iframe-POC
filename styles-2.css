@@ -108,6 +108,38 @@ a {
     --header-offset: 0px;
 }
 
+/* Inside the iframe the section just fills the viewport — scroll depth lives
+   in the parent wrapper created by widget.js, not inside the iframe. */
+.iframe-body .scroll-showcase-section {
+    min-height: unset;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+}
+
+.iframe-body .scroll-showcase-stage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.iframe-body .video-scrub-section {
+    min-height: unset;
+    height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin-top: 0;
+}
+
+.iframe-body .video-scrub-stage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .iframe-body .page {
     display: block;
     min-height: 0;
